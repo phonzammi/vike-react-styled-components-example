@@ -1,8 +1,8 @@
-import { ServerStyleSheet } from "styled-components";
+import type { IStyleSheetManager, ServerStyleSheet } from "styled-components";
 
 declare global {
   namespace Vike {
-    interface Config {
+    interface PageContext {
       styleSheet?: ServerStyleSheet;
     }
   }

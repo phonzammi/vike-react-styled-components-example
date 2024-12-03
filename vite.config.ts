@@ -7,7 +7,14 @@ export default defineConfig({
     vike({}),
     react({
       babel: {
-        plugins: [["babel-plugin-styled-components"]],
+        plugins: [
+          [
+            "babel-plugin-styled-components",
+            {
+              fileName: false,
+            },
+          ],
+        ],
       },
     }),
   ],

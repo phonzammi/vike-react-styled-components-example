@@ -3,15 +3,15 @@ import type { PageContext } from "vike/types";
 
 export default (pageContext: PageContext) => {
   const config = useConfig();
-  if (pageContext.config.styleSheet) {
-    const { styleSheet } = pageContext.config;
+  if (pageContext.styleSheet) {
+    const { styleSheet } = pageContext;
     try {
       const styles = styleSheet.getStyleElement();
       config({
         Head: styles,
       });
     } catch (error) {
-      console.log("error :", error);
+      throw error;
     } finally {
       styleSheet.seal();
     }

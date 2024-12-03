@@ -3,16 +3,17 @@ import "./style.css";
 import React from "react";
 import logoUrl from "../assets/logo.svg";
 import { Link } from "../components/Link.js";
+import { styled } from "styled-components";
+
+const StyledLayout = styled.div`
+  display: flex;
+  max-width: 900px;
+  margin: auto;
+`;
 
 export default function LayoutDefault({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        maxWidth: 900,
-        margin: "auto",
-      }}
-    >
+    <StyledLayout>
       <Sidebar>
         <Logo />
         <Link href="/">Welcome</Link>
@@ -21,56 +22,52 @@ export default function LayoutDefault({ children }: { children: React.ReactNode 
         {""}
       </Sidebar>
       <Content>{children}</Content>
-    </div>
+    </StyledLayout>
   );
 }
 
+const StyledSidebar = styled.div`
+  padding: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.8em;
+  border-right: 2px solid #eee
+`
 function Sidebar({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      id="sidebar"
-      style={{
-        padding: 20,
-        flexShrink: 0,
-        display: "flex",
-        flexDirection: "column",
-        lineHeight: "1.8em",
-        borderRight: "2px solid #eee",
-      }}
-    >
+    <StyledSidebar id="sidebar">
       {children}
-    </div>
+    </StyledSidebar>
   );
 }
+
+const StyledContent = styled.div`
+  padding: 20px;
+  padding-bottom: 50px;
+  min-height: 100vh;
+`
 
 function Content({ children }: { children: React.ReactNode }) {
   return (
     <div id="page-container">
-      <div
-        id="page-content"
-        style={{
-          padding: 20,
-          paddingBottom: 50,
-          minHeight: "100vh",
-        }}
-      >
+      <StyledContent id="page-content">
         {children}
-      </div>
+      </StyledContent>
     </div>
   );
 }
 
+const StyledLogo = styled.div`
+  margin: 20px auto 10px;
+`
+
 function Logo() {
   return (
-    <div
-      style={{
-        marginTop: 20,
-        marginBottom: 10,
-      }}
-    >
+    <StyledLogo >
       <a href="/">
         <img src={logoUrl} height={64} width={64} alt="logo" />
       </a>
-    </div>
+    </StyledLogo>
   );
 }
